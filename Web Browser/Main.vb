@@ -8,15 +8,20 @@
     End Sub
 
     Private Sub cmdGo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdGo.Click
+        Try
+            If Mid(txtURL.Text, 1, 7) = "http://" Then
+                wbrMain.Navigate(txtURL.Text)
+            Else
+                wbrMain.Navigate("http://" & txtURL.Text)
+                txtURL.Text = "http://" & txtURL.Text
+            End If
 
+        Catch ex As Exception
 
-        If Mid(txtURL.Text, 1, 7) = "http://" Then
-            wbrMain.Navigate(txtURL.Text)
-        Else
-            MsgBox("You are missing http:// please correct your mistake by adding http:// to the begining of your URL E.g. http://www.google.co.uk")
-        End If
+            MsgBox("You are missing http:// please correct your mistake by adding http:// to the begining of your URL E.g. http://" & txtURL.Text)
 
-        ' wbrMain.Navigate(txtURL.Text)
+        End Try
+        
 
     End Sub
 
@@ -99,8 +104,6 @@
             lblStatus.Text = wbrMain.StatusText
 
         Catch ex As Exception
-
-
 
         End Try
 

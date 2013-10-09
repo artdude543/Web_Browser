@@ -22,6 +22,7 @@ Partial Class Main
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.pnlBrowser = New System.Windows.Forms.Panel()
         Me.wbrMain = New System.Windows.Forms.WebBrowser()
         Me.txtURL = New System.Windows.Forms.TextBox()
@@ -31,12 +32,12 @@ Partial Class Main
         Me.cmdHome = New System.Windows.Forms.Button()
         Me.cmdBack = New System.Windows.Forms.Button()
         Me.msMain = New System.Windows.Forms.MenuStrip()
-        Me.ssMain = New System.Windows.Forms.StatusStrip()
-        Me.pgbDone = New System.Windows.Forms.ToolStripProgressBar()
-        Me.lblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HistoryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ssMain = New System.Windows.Forms.StatusStrip()
+        Me.pgbDone = New System.Windows.Forms.ToolStripProgressBar()
+        Me.lblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.pnlBrowser.SuspendLayout()
         Me.msMain.SuspendLayout()
         Me.ssMain.SuspendLayout()
@@ -119,6 +120,25 @@ Partial Class Main
         Me.msMain.TabIndex = 7
         Me.msMain.Text = "MenuStrip1"
         '
+        'FileToolStripMenuItem
+        '
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloseToolStripMenuItem})
+        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Text = "File"
+        '
+        'CloseToolStripMenuItem
+        '
+        Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
+        Me.CloseToolStripMenuItem.Text = "Close"
+        '
+        'HistoryToolStripMenuItem
+        '
+        Me.HistoryToolStripMenuItem.Name = "HistoryToolStripMenuItem"
+        Me.HistoryToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
+        Me.HistoryToolStripMenuItem.Text = "History"
+        '
         'ssMain
         '
         Me.ssMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.pgbDone, Me.lblStatus})
@@ -139,25 +159,6 @@ Partial Class Main
         Me.lblStatus.Size = New System.Drawing.Size(35, 17)
         Me.lblStatus.Text = "Done"
         '
-        'FileToolStripMenuItem
-        '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloseToolStripMenuItem})
-        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
-        Me.FileToolStripMenuItem.Text = "File"
-        '
-        'CloseToolStripMenuItem
-        '
-        Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.CloseToolStripMenuItem.Text = "Close"
-        '
-        'HistoryToolStripMenuItem
-        '
-        Me.HistoryToolStripMenuItem.Name = "HistoryToolStripMenuItem"
-        Me.HistoryToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
-        Me.HistoryToolStripMenuItem.Text = "History"
-        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -173,6 +174,7 @@ Partial Class Main
         Me.Controls.Add(Me.pnlBrowser)
         Me.Controls.Add(Me.msMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.msMain
         Me.Name = "Main"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

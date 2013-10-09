@@ -8,20 +8,27 @@
     End Sub
 
     Private Sub cmdGo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdGo.Click
+
+        Dim URL_Entered As String
+        URL_Entered = txtURL.Text
+
         Try
             If Mid(txtURL.Text, 1, 7) = "http://" Then
                 wbrMain.Navigate(txtURL.Text)
+
+            ElseIf Mid(txtURL.Text, 1, 8) = "https://" Then
+                wbrMain.Navigate(txtURL.Text)
+
             Else
                 wbrMain.Navigate("http://" & txtURL.Text)
-                txtURL.Text = "http://" & txtURL.Text
+                txtURL.Text = "http://" & URL_Entered
             End If
 
         Catch ex As Exception
 
-            MsgBox("You are missing http:// please correct your mistake by adding http:// to the begining of your URL. This is the correct method " & txtURL.Text)
+            MsgBox("You are missing http:// from your URL. This is the correct method " & txtURL.Text)
 
         End Try
-        
 
     End Sub
 
@@ -39,24 +46,30 @@
 
         Dim duplicate As Boolean = False
 
-        For Each item In cmbFavourites.Items
+        Try
 
-            If LCase(item) = LCase(txtURL.Text) Then
+            For Each item In cmbFavourites.Items
 
-                duplicate = True
+                If LCase(item) = LCase(txtURL.Text) Then
+
+                    duplicate = True
+
+                End If
+            Next
+
+            If duplicate = False Then
+
+                cmbFavourites.Items.Add(txtURL.Text)
+
+            Else
+
+                MsgBox("You Already Have " & txtURL.Text & " Added!")
 
             End If
-        Next
 
-        If duplicate = False Then
+        Catch ex As Exception
 
-            cmbFavourites.Items.Add(txtURL.Text)
-
-        Else
-
-            MsgBox("You Already Have " & txtURL.Text & " Added")
-
-        End If
+        End Try
 
     End Sub
 

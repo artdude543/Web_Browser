@@ -18,7 +18,7 @@
 
         Catch ex As Exception
 
-            MsgBox("You are missing http:// please correct your mistake by adding http:// to the begining of your URL E.g. http://" & txtURL.Text)
+            MsgBox("You are missing http:// please correct your mistake by adding http:// to the begining of your URL. This is the correct method " & txtURL.Text)
 
         End Try
         
@@ -54,15 +54,9 @@
 
         Else
 
-            MsgBox("Already Added!")
+            MsgBox("You Already Have " & txtURL.Text & " Added")
 
         End If
-
-    End Sub
-
-    Private Sub fav_Click(ByVal sender As ToolStripMenuItem, ByVal byvale As System.EventArgs)
-
-        wbrMain.Navigate(sender.Tag)
 
     End Sub
 

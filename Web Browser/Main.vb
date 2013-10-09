@@ -55,6 +55,12 @@
 
     End Sub
 
+    Private Sub fav_Click(ByVal sender As ToolStripMenuItem, ByVal byvale As System.EventArgs)
+
+        wbrMain.Navigate(sender.Tag)
+
+    End Sub
+
     Private Sub cmdHome_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdHome.Click
 
         wbrMain.GoHome()
@@ -67,4 +73,48 @@
 
     End Sub
 
+    Private Sub wbrMain_DocumentCompleted(sender As Object, e As WebBrowserDocumentCompletedEventArgs) Handles wbrMain.DocumentCompleted
+
+        txtURL.Text = wbrMain.Url.ToString
+        Me.Text = wbrMain.DocumentTitle & " | DiamentiumUK Browser"
+
+        If My.Settings.History.Count > 0 Then
+            If Not My.Settings.History.Item(My.Settings.History.Count - 1) = wbrMain.Url.ToString Then
+                My.Settings.History.Add(wbrMain.Url.ToString)
+            End If
+        Else
+            My.Settings.History.Add(wbrMain.Url.ToString)
+        End If
+
+        History.updateHistory()
+
+    End Sub
+
+    Private Sub wbrMain_ProgressChanged(sender As Object, e As WebBrowserProgressChangedEventArgs) Handles wbrMain.ProgressChanged
+
+        Try
+
+            pgbDone.Maximum = e.MaximumProgress
+            pgbDone.Value = e.CurrentProgress
+            lblStatus.Text = wbrMain.StatusText
+
+        Catch ex As Exception
+
+
+
+        End Try
+
+    End Sub
+
+    Private Sub CloseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseToolStripMenuItem.Click
+
+        Application.Exit()
+
+    End Sub
+
+    Private Sub HistoryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HistoryToolStripMenuItem.Click
+
+        History.ShowDialog()
+
+    End Sub
 End Class
